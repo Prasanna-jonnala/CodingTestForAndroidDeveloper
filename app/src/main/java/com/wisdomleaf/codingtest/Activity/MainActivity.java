@@ -1,5 +1,6 @@
 package com.wisdomleaf.codingtest.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -11,6 +12,8 @@ import retrofit2.Response;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -76,11 +79,10 @@ public class MainActivity extends AppCompatActivity
 						{
 							setUpList(imagesList);
 						}
-						
 					}
 					else
 					{
-						Toast.makeText(MainActivity.this, getString(R.string.no_data), Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivity.this,getString(R.string.no_data),Toast.LENGTH_SHORT).show();
 					}
 				}
 				catch(Exception e)
@@ -101,7 +103,6 @@ public class MainActivity extends AppCompatActivity
 	
 	/**
 	 Description : Set Images data to Adapter
-	 @param imagesList
 	 */
 	private void setUpList(List<ImagesData> imagesList)
 	{
@@ -111,5 +112,26 @@ public class MainActivity extends AppCompatActivity
 		rv_images.setItemAnimator(new DefaultItemAnimator());
 		rv_images.setAdapter(mAdapter);
 		mAdapter.notifyDataSetChanged();
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		getMenuInflater().inflate(R.menu.menu_refresh,menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item)
+	{
+		
+		switch(item.getItemId())
+		{
+			case R.id.menu_refresh:
+				getData();
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 }

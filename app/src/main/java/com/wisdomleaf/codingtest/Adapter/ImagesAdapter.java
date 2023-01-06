@@ -30,7 +30,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.MyViewHolder>
 {
-	private static final String TAG = ImagesAdapter.class.getSimpleName();
 	private Context context;
 	private List<ImagesData> mfiltered_list;
 	private long mLastClickTime = 0;
